@@ -1,1 +1,115 @@
+#include <iostream>
+#include <string>
+using namespace std;
 
+class Person {
+public:
+    string name;
+    int age;
+    string gender;
+    string occupation;
+    string address;
+
+    void submit() {
+        cout << "Мене звуть " << name << ", я маю " << age << " років. Я " << gender << " та працюю як " << occupation << ". Моя адреса: " << address << endl;
+    }
+
+    void work() {
+        cout << name << " працюю в даний час." << endl;
+    }
+
+    void sleep() {
+        cout << name << " спить зараз." << endl;
+    }
+
+    void eat(string food) {
+        cout << name << " їсть " << food << "." << endl;
+    }
+
+    void study() {
+        cout << name << " вивчає зараз." << endl;
+    }
+};
+
+class Room {
+public:
+    int width;
+    int length;
+    int height;
+    string color;
+    bool hasWindow;
+
+    void define() {
+        cout << "Кімната має розміри " << width << "м x " << length << "м x " << height << "м. Цвет: " << color;
+        if (hasWindow) {
+            cout << ". Є вікно.";
+        } else {
+            cout << ". Неважно.";
+        }
+        cout << endl;
+    }
+};
+
+class MobilePhone {
+public:
+    string brand;
+    string model;
+    string color;
+    int storage;
+    string operatingSystem;
+
+    void call(string number) {
+        cout << "Дзвонимо на номер " << number << " зараз." << endl;
+    }
+
+    void sendMessage(string recipient, string message) {
+        cout << "Відправляємо повідомлення на номер " << recipient << ": " << message << endl;
+    }
+
+    void browseInternet(string website) {
+        cout << "Переглядаємо веб-сайт " << website << " зараз." << endl;
+    }
+
+    void installApp(string appName) {
+        cout << "Встановлюємо додаток " << appName << " зараз." << endl;
+    }
+
+    void takePhoto() {
+        cout << "Робимо фото зараз." << endl;
+    }
+};
+
+class Student {
+public:
+    string message;
+    string name;
+
+    void saySomething() {
+        cout << message << "\n";
+    }
+};
+
+class Teacher {
+public:
+    string name;
+    int health;
+
+    void hearSomething(Student& who) {
+        cout << "Я чую щось:\n";
+        who.saySomething();
+        // health--;
+    }
+};
+
+int main() {
+    Student s;
+    s.name = "Нікола";
+    s.message = "Перевірте будь ласка моє домашнє завдання.";
+
+    Teacher t;
+    t.name = "Олександр";
+
+    t.hearSomething(s);
+
+    return 0;
+}
