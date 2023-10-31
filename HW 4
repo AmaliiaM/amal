@@ -1,1 +1,304 @@
+#include <iostream>
+#include <string>
+using namespace std;
 
+class Person {
+private:
+    string name;
+    int age;
+    string gender;
+    string occupation;
+    string address;
+
+public:
+    void setName(string name) {
+        this->name = name;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    void setAge(int age) {
+        this->age = age;
+    }
+
+    int getAge() const {
+        return age;
+    }
+
+    void setGender(string gender) {
+        this->gender = gender;
+    }
+
+    string getGender() const {
+        return gender;
+    }
+
+    void setOccupation(string occupation) {
+        this->occupation = occupation;
+    }
+
+    string getOccupation() const {
+        return occupation;
+    }
+
+    void setAddress(string address) {
+        this->address = address;
+    }
+
+    string getAddress() const {
+        return address;
+    }
+
+    void submit() {
+        cout << "Мене звуть " << name << ", я маю " << age << " років. Я " << gender << " та працюю як " << occupation << ". Моя адреса: " << address << endl;
+    }
+
+    void work() {
+        cout << name << " працюю в даний час." << endl;
+    }
+
+    void sleep() {
+        cout << name << " спить зараз." << endl;
+    }
+
+    void eat(string food) {
+        cout << name << " їсть " << food << "." << endl;
+    }
+
+    void study() {
+        cout << name << " вивчає зараз." << endl;
+    }
+};
+class Room {
+private:
+    int width;
+    int length;
+    int height;
+    string color;
+    bool hasWindow;
+
+public:
+    void setWidth(int width) {
+        this->width = width;
+    }
+
+    int getWidth() const {
+        return width;
+    }
+
+    void setLength(int length) {
+        this->length = length;
+    }
+
+    int getLength() const {
+        return length;
+    }
+
+    void setHeight(int height) {
+        this->height = height;
+    }
+
+    int getHeight() const {
+        return height;
+    }
+
+    void setColor(string color) {
+        this->color = color;
+    }
+
+    string getColor() const {
+        return color;
+    }
+
+    void setHasWindow(bool hasWindow) {
+        this->hasWindow = hasWindow;
+    }
+
+    bool getHasWindow() const {
+        return hasWindow;
+    }
+
+    void define() {
+        cout << "Кімната має розміри " << width << "м x " << length << "м x " << height << "м. Цвет: " << color;
+        if (hasWindow) {
+            cout << ". Є вікно.";
+        } else {
+            cout << ". Неважно.";
+        }
+        cout << endl;
+    }
+};
+
+class MobilePhone {
+private:
+    string brand;
+    string model;
+    string color;
+    int storage;
+    string operatingSystem;
+
+public:
+    void setBrand(string brand) {
+        this->brand = brand;
+    }
+
+    string getBrand() const {
+        return brand;
+    }
+
+    void setModel(string model) {
+        this->model = model;
+    }
+
+    string getModel() const {
+        return model;
+    }
+
+    void setColor(string color) {
+        this->color = color;
+    }
+
+    string getColor() const {
+        return color;
+    }
+
+    void setStorage(int storage) {
+        this->storage = storage;
+    }
+
+    int getStorage() const {
+        return storage;
+    }
+
+    void setOperatingSystem(string operatingSystem) {
+        this->operatingSystem = operatingSystem;
+    }
+
+    string getOperatingSystem() const {
+        return operatingSystem;
+    }
+
+    void call(string number) {
+        cout << "Дзвонимо на номер " << number << " зараз." << endl;
+    }
+
+    void sendMessage(string recipient, string message) {
+        cout << "Відправляємо повідомлення на номер " << recipient << ": " << message << endl;
+    }
+
+    void browseInternet(string website) {
+        cout << "Переглядаємо веб-сайт " << website << " зараз." << endl;
+    }
+
+    void installApp(string appName) {
+        cout << "Встановлюємо додаток " << appName << " зараз." << endl;
+    }
+
+    void takePhoto() {
+        cout << "Робимо фото зараз." << endl;
+    }
+};
+
+class Student {
+private:
+    string message;
+    string name;
+
+public:
+    void setMessage(string message) {
+        this->message = message;
+    }
+
+    string getMessage() const {
+        return message;
+    }
+
+    void setName(string name) {
+        this->name = name;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    void saySomething() {
+        cout << message << "\n";
+    }
+};
+
+class Teacher {
+private:
+    string name;
+    int health;
+
+public:
+    void setName(string name) {
+        this->name = name;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    void setHealth(int health) {
+        this->health = health;
+    }
+
+    int getHealth() const {
+        return health;
+    }
+
+    void hearSomething(Student& who) {
+        cout << "Я чую щось:\n";
+        who.saySomething();
+        // health--;
+    }
+};
+
+
+int main() {
+    Person person;
+    person.setName("Іван");
+    person.setAge(30);
+    person.setGender("Чоловік");
+    person.setOccupation("Інженер");
+    person.setAddress("вул. Примерна, 123");
+
+    person.submit();
+    person.work();
+    person.eat("пасту");
+    person.study();
+
+Room room;
+    room.setWidth(5);
+    room.setLength(7);
+    room.setHeight(3);
+    room.setColor("Синій");
+    room.setHasWindow(true);
+
+    room.define();
+
+    MobilePhone phone;
+    phone.setBrand("Samsung");
+    phone.setModel("Galaxy S21");
+    phone.setColor("Чорний");
+    phone.setStorage(128);
+    phone.setOperatingSystem("Android");
+
+    phone.call("123456789");
+    phone.sendMessage("987654321", "Привіт!");
+    phone.browseInternet("example.com");
+    phone.installApp("Додаток");
+
+    Student student;
+    student.setName("Марія");
+    student.setMessage("Привіт, я студент!");
+
+    Teacher teacher;
+    teacher.setName("Віктор");
+    teacher.hearSomething(student);
+
+    return 0;
+}
