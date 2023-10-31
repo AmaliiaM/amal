@@ -1,0 +1,287 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Dog {
+private:
+    string breed;
+    int age;
+    string color;
+    double weight;
+    bool isTrained;
+
+public:
+    Dog() : breed("Labrador"), age(3), color("Golden"), weight(25.5), isTrained(true) {}
+
+    Dog(string breed, int age, string color, double weight, bool isTrained) {
+        this->breed = breed;
+        this->age = age;
+        this->color = color;
+        this->weight = weight;
+        this->isTrained = isTrained;
+    }
+
+    void bark() {
+        cout << "Woof! Woof!" << endl;
+    }
+
+    void fetch() {
+        if (isTrained) {
+            cout << "Dog is fetching the ball." << endl;
+        } else {
+            cout << "Dog is not trained to fetch." << endl;
+        }
+    }
+
+    void sleep() {
+        cout << "Dog is sleeping." << endl;
+    }
+
+    void printDog() {
+        cout << "Breed: " << breed << endl;
+        cout << "Age: " << age << " years" << endl;
+        cout << "Color: " << color << endl;
+        cout << "Weight: " << weight << " kg" << endl;
+        cout << "Trained: " << (isTrained ? "Yes" : "No") << endl;
+    }
+};
+
+class Bird {
+private:
+    string species;
+    string color;
+    bool canFly;
+    int age;
+    double wingspan;
+
+public:
+    Bird() : species("Sparrow"), color("Brown"), canFly(true), age(2), wingspan(20.5) {}
+
+    Bird(string species, string color, bool canFly, int age, double wingspan) {
+        this->species = species;
+        this->color = color;
+        this->canFly = canFly;
+        this->age = age;
+        this->wingspan = wingspan;
+    }
+
+    void sing() {
+        cout << "Chirp! Chirp!" << endl;
+    }
+
+    void fly() {
+        if (canFly) {
+            cout << "Bird is flying." << endl;
+        } else {
+            cout << "Bird cannot fly." << endl;
+        }
+    }
+
+    void eat() {
+        cout << "Bird is eating." << endl;
+    }
+
+    void printBird() {
+        cout << "Species: " << species << endl;
+        cout << "Color: " << color << endl;
+        cout << "Can Fly: " << (canFly ? "Yes" : "No") << endl;
+        cout << "Age: " << age << " years" << endl;
+        cout << "Wingspan: " << wingspan << " cm" << endl;
+    }
+};
+
+class Fish {
+private:
+    string species;
+    string color;
+    double length;
+    bool isSaltwater;
+    bool isFreshwater;
+
+public:
+    Fish() : species("Goldfish"), color("Orange"), length(10.0), isSaltwater(false), isFreshwater(true) {}
+
+    Fish(string species, string color, double length, bool isSaltwater, bool isFreshwater) {
+        this->species = species;
+        this->color = color;
+        this->length = length;
+        this->isSaltwater = isSaltwater;
+        this->isFreshwater = isFreshwater;
+    }
+
+    void swim() {
+        cout << "Fish is swimming." << endl;
+    }
+
+    void breathe() {
+        cout << "Fish is breathing underwater." << endl;
+    }
+
+    void sleep() {
+        cout << "Fish is sleeping." << endl;
+    }
+
+    void printFish() {
+        cout << "Species: " << species << endl;
+        cout << "Color: " << color << endl;
+        cout << "Length: " << length << " cm" << endl;
+        cout << "Saltwater: " << (isSaltwater ? "Yes" : "No") << endl;
+        cout << "Freshwater: " << (isFreshwater ? "Yes" : "No") << endl;
+    }
+};
+
+class Car {
+private:
+    string brand;
+    string model;
+    int year;
+    string color;
+    double price;
+
+public:
+    Car() : brand("Toyota"), model("Corolla"), year(2022), color("Silver"), price(25000.0) {}
+
+    Car(string brand, string model, int year, string color, double price) {
+        this->brand = brand;
+        this->model = model;
+        this->year = year;
+        this->color = color;
+        this->price = price;
+    }
+
+    void startEngine() {
+        cout << "Car engine started." << endl;
+    }
+
+    void accelerate() {
+        cout << "Car is accelerating." << endl;
+    }
+
+    void brake() {
+        cout << "Car is braking." << endl;
+    }
+
+    void honk() {
+        cout << "Honk! Honk!" << endl;
+    }
+
+    void printCar() {
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Year: " << year << endl;
+        cout << "Color: " << color << endl;
+        cout << "Price: $" << price << endl;
+    }
+};
+
+class Computer {
+private:
+    string brand;
+    string processor;
+    int ramSize;
+    int storageSize;
+    string operatingSystem;
+
+public:
+    Computer() : brand("HP"), processor("Intel Core i5"), ramSize(8), storageSize(512), operatingSystem("Windows 10") {}
+
+    Computer(string brand, string processor, int ramSize, int storageSize, string operatingSystem) {
+        this->brand = brand;
+        this->processor = processor;
+        this->ramSize = ramSize;
+        this->storageSize = storageSize;
+        this->operatingSystem = operatingSystem;
+    }
+
+    void turnOn() {
+        cout << "Computer is turning on." << endl;
+    }
+
+    void shutDown() {
+        cout << "Computer is shutting down." << endl;
+    }
+
+    void browseInternet() {
+        cout << "Computer is browsing the internet." << endl;
+    }
+
+    void runApplication() {
+        cout << "Application is running on the computer." << endl;
+    }
+
+    void printComputer() {
+        cout << "Brand: " << brand << endl;
+        cout << "Processor: " << processor << endl;
+        cout << "RAM Size: " << ramSize << " GB" << endl;
+        cout << "Storage Size: " << storageSize << " GB" << endl;
+        cout << "Operating System: " << operatingSystem << endl;
+    }
+};
+
+int main() {
+    Dog dog1;
+    dog1.printDog();
+    dog1.bark();
+    dog1.fetch();
+    dog1.sleep();
+
+    Dog dog2("Bulldog", 4, "Brown", 30.2, false);
+    dog2.printDog();
+    dog2.bark();
+    dog2.fetch();
+    dog2.sleep();
+
+    Bird bird1;
+    bird1.printBird();
+    bird1.sing();
+    bird1.fly();
+    bird1.eat();
+
+    Bird bird2("Eagle", "Brown", true, 5, 180.0);
+    bird2.printBird();
+    bird2.sing();
+    bird2.fly();
+    bird2.eat();
+
+    Fish fish1;
+    fish1.printFish();
+    fish1.swim();
+    fish1.breathe();
+    fish1.sleep();
+
+    Fish fish2("Clownfish", "Orange", 7.5, true, true);
+    fish2.printFish();
+    fish2.swim();
+    fish2.breathe();
+    fish2.sleep();
+
+    Car car1;
+    car1.printCar();
+    car1.startEngine();
+    car1.accelerate();
+    car1.brake();
+    car1.honk();
+
+    Car car2("Honda", "Civic", 2023, "Blue", 28000.0);
+    car2.printCar();
+    car2.startEngine();
+    car2.accelerate();
+    car2.brake();
+    car2.honk();
+
+    Computer computer1;
+    computer1.printComputer();
+    computer1.turnOn();
+    computer1.browseInternet();
+    computer1.runApplication();
+    computer1.shutDown();
+
+    Computer computer2("Dell", "Intel Core i7", 16, 1024, "Windows 11");
+    computer2.printComputer();
+    computer2.turnOn();
+    computer2.browseInternet();
+    computer2.runApplication();
+    computer2.shutDown();
+
+    return 0;
+}
