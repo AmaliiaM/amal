@@ -1,0 +1,192 @@
+#include <iostream>
+#include <string>
+
+class Student 
+{ 
+    std::string name; 
+    std::string surname; 
+    int age; 
+
+    int* practice_rates = nullptr; 
+    int practice_rates_count = 0; 
+
+    int* hometask_rates = nullptr; 
+    int hometask_rates_count = 0; 
+
+    int* exam_rates = nullptr; 
+    int exam_rates_count = 0; 
+
+public: 
+    Student() : name(""), surname(""), age(18), 
+                practice_rates(nullptr), practice_rates_count(0),
+                hometask_rates(nullptr), hometask_rates_count(0),
+                exam_rates(nullptr), exam_rates_count(0)
+    { 
+        std::cout << "Student has been created!\n"; 
+    } 
+    
+    Student(std::string name, std::string surname, int age) : Student()
+    {
+        SetName(name);
+        SetSurname(surname);
+        SetAge(age);
+    }
+
+    ~Student() 
+    { 
+        if (practice_rates != nullptr) 
+        { 
+            delete[] practice_rates; 
+            practice_rates = nullptr; 
+        }     
+        if (hometask_rates != nullptr) 
+        { 
+            delete[] hometask_rates; 
+            hometask_rates = nullptr; 
+        } 
+        if (exam_rates != nullptr) 
+        { 
+            delete[] exam_rates; 
+            exam_rates = nullptr; 
+        } 
+    } 
+ 
+    void SetName(std::string name) 
+    { 
+        this->name = name; 
+    } 
+ 
+    std::string GetName() const 
+    { 
+        return name; 
+    } 
+ 
+    void SetSurname(std::string surname) 
+    { 
+        this->surname = surname; 
+    } 
+ 
+    std::string GetSurname() const 
+    { 
+        return surname; 
+    } 
+ 
+    void SetAge(int age) 
+    { 
+        if (age >= 0) 
+        {
+            this->age = age; 
+        }
+        else 
+        {
+            std::cout << "Invalid value for parameter age. Age must be a non-negative value.\n";
+        }
+    } 
+ 
+    int GetAge() const 
+    { 
+        return age; 
+    } 
+
+    int GetPracticeRatesCount() const 
+    { 
+        return practice_rates_count; 
+    } 
+ 
+    int* GetPracticeRates() const 
+    { 
+        return practice_rates; 
+    } 
+
+    int GetHometasksRatesCount() const 
+    { 
+        return hometask_rates_count; 
+    } 
+ 
+    int* GetHometaskRates() const 
+    { 
+        return hometask_rates; 
+    } 
+
+    int GetExamRatesCount() const 
+    { 
+        return exam_rates_count; 
+    } 
+ 
+    int* GetExamRates() const 
+    { 
+        return exam_rates; 
+    } 
+
+    void AddPracticeRate(unsigned int rate) 
+    { 
+        AddRate(practice_rates, practice_rates_count, rate, "Practice");
+    } 
+
+    void AddHometaskRate(unsigned int rate) 
+    { 
+        AddRate(hometask_rates, hometask_rates_count, rate, "Hometask");
+    } 
+
+    void AddExamRate(unsigned int rate) 
+    { 
+        AddRate(exam_rates, exam_rates_count, rate, "Exam");
+    } 
+
+    void DisplayStudentInfo() const
+    {
+        std::cout << "Name: " << GetName() << ", Surname: " << GetSurname() << ", Age: " << GetAge() << "\n";
+        DisplayRates("Practice", practice_rates, practice_rates_count);
+        DisplayRates("Hometask", hometask_rates, hometask_rates_count);
+        DisplayRates("Exam", exam_rates, exam_rates_count);
+    }
+
+private:
+    void AddRate(int*& rates, int& rates_count, unsigned int rate, const std::string& rate_type) 
+    { 
+        if (rate < 1 || rate > 12) 
+        { 
+            std::cout << "Incorrect value for " << rate_type << " rate. Value must be from 1 to 12\n"; 
+            throw "ERROR!";
+        } 
+
+        if (rates_count == 0) 
+        { 
+            rates = new int[1]; 
+            rates[0] = rate; 
+        } 
+        else 
+        { 
+            int* temp = new int[rates_count + 1]; 
+            for (int i = 0; i < rates_count; i++) 
+            { 
+                temp[i] = rates[i]; 
+            } 
+            temp[rates_count] = rate; 
+            delete[] rates; 
+            rates = temp; 
+        } 
+        rates_count++; 
+    } 
+
+    void DisplayRates(const std::string& rate_type, const int* rates, const int rates_count) const
+    {
+        std::cout << rate_type << " Rates: ";
+        for (int i = 0; i < rates_count; ++i) {
+            std::cout << rates[i] << " ";
+        }
+        std::cout << "\n";
+    }
+}; 
+ 
+int main() 
+{ 
+    Student s("John", "Doe", 20); 
+    s.DisplayStudentInfo();
+    
+    s.AddPracticeRate(8);
+    s.AddHometaskRate(10);
+    s.AddExamRate(11);
+    
+    s.DisplayStudentInfo();
+} 
