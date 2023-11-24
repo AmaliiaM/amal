@@ -1,0 +1,288 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+enum Specialization {
+    COMPUTER_SCIENCE,
+    ELECTRICAL_ENGINEERING,
+    MECHANICAL_ENGINEERING,
+    CHEMISTRY,
+    BIOLOGY
+};
+
+class Student {
+private:
+    std::string name;
+    std::string surname;
+    int age;
+    int* exam_grades;
+    int exam_count;
+
+public:
+    Student(std::string name, std::string surname, int age) : name(name), surname(surname), age(age), exam_grades(nullptr), exam_count(0) {}
+
+    ~Student() {
+        delete[] exam_grades;
+    }
+
+    void SetExamGrades(int* grades, int count) {
+        if (grades != nullptr && count > 0) {
+            exam_grades = new int[count];
+            std::copy(grades, grades + count, exam_grades);
+            exam_count = count;
+        }
+    }
+
+    int* GetExamGrades() const {
+        return exam_grades;
+    }
+
+    int GetExamCount() const {
+        return exam_count;
+    }
+
+    std::string GetName() const {
+        return name;
+    }
+
+    std::string GetSurname() const {
+        return surname;
+    }
+
+    int GetAge() const {
+        return age;
+    }
+};
+
+class Group {
+private:
+    std::vector<Student*> students;
+    int group_size;
+    std::string group_name;
+    Specialization specialization;
+    int course_number;
+
+public:
+    Group() : group_size(0), group_name(""), specialization(COMPUTER_SCIENCE), course_number(1) {}
+
+    Group(const Group& other) {
+        group_name = other.group_name;
+        specialization = other.specialization;
+        course_number = other.course_number;
+        group_size = other.group_size;
+
+        for (const auto& student : other.students) {
+            Student* new_student = new Student(*student);
+            students.push_back(new_student);
+        }
+    }
+
+    ~Group() {
+        for (auto& student : students) {
+            delete student;
+        }
+    }
+
+    
+    Student* GetStudent(int index) const {
+        if (index >= 0 && index < group_size) {
+            return students[index];
+        }
+        return nullptr;
+    }
+
+    int GetGroupSize() const {
+        return group_size;
+    }
+
+    
+    std::string GetGroupName() const {
+        return group_name;
+    }
+
+    void SetGroupName(const std::string& name) {
+        group_name = name;
+    }
+
+    
+    Specialization GetSpecialization() const {
+        return specialization;
+    }
+
+    void SetSpecialization(Specialization spec) {
+        specialization = spec;
+    }
+
+    
+    int GetCourseNumber() const {
+        return course_number;
+    }
+
+    void SetCourseNumber(int course) {
+        course_number = course;
+    }
+
+    
+    void DisplayAllStudents() const {
+        std::cout << "Group: " << group_name << ", Specialization: " << GetSpecializationString() << ", Course: " << course_number << "\n";
+        std::cout << "Students:\n";
+
+        for (int i = 0; i < group_size; ++i) {
+            std::cout << i + 1 << ". " << students[i]->GetSurname() << ", " << students[i]->GetName() << "\n";
+        }
+    }
+
+    
+    void AddStudent(Student* new_student) {
+        students.push_back(new_student);
+        group_size++;
+    }
+
+    
+    void MergeGroups(const Group& other) {
+        for (const auto& student : other.students) {
+            Student* new_student = new Student(*student);
+            students.push_back(new_student);
+            group_size++;
+        }
+    }
+
+    
+    void TransferStudent(int student_index, Group& destination_group) {
+        if (student_index >= 0 && student_index < group_size) {
+            Student* transferred_student = students[student_index];
+            destination_group.AddStudent(transferred_student);
+
+            students.erase(students.begin() + student_index);
+            group_size--;
+        }
+    }
+
+    
+    void ExpelFailedStudents() {
+        students.erase(std::remove_if(students.begin(), students.end(),
+            [](const Student* student) {
+                int* grades = student->GetExamGrades();
+                int count = student->GetExamCount();
+                return std::any_of(grades, grades + count, [](int grade) { return grade < 3; });
+            }),
+            students.end());
+
+        group_size = students.size();
+    }
+
+    
+    void ExpelWorstHomeworkStudent() {
+        auto worst_student_iter = std::min_element(students.begin(), students.end(),
+            [](const Student* s1, const Student* s2) {
+                int* grades1 = s1->GetExamGrades();
+                int* grades2 = s2->GetExamGrades();
+                int count1 = s1->GetExamCount();
+                int count2 = s2->GetExamCount();
+
+                double avg_grade1 = (count1 > 0) ? static_cast<double>(std::accumulate(grades1, grades1 + count1, 0)) / count1 : 0;
+                double avg_grade2 = (count2 > 0) ? static_cast<double>(std::accumulate(grades2, grades2 + count2, 0)) / count2 : 0;
+
+                return avg_grade1 < avg_grade2;
+            });
+
+        if (worst_student_iter != students.end()) {
+            delete *worst_student_iter;
+            students.erase(worst_student_iter);
+            group_size = students.size();
+        }
+    }
+
+private:
+    std::string GetSpecializationString() const {
+        switch (specialization) {
+        case COMPUTER_SCIENCE:
+            return "Computer Science";
+        case ELECTRICAL_ENGINEERING:
+            return "Electrical Engineering";
+        case MECHANICAL_ENGINEERING:
+            return "Mechanical Engineering";
+        case CHEMISTRY:
+            return "Chemistry";
+        case BIOLOGY:
+            return "Biology";
+        default:
+            return "Unknown";
+        }
+    }
+};
+
+int main() {
+    
+
+    
+    Student* student1 = new Student("John", "Doe", 20);
+    Student* student2 = new Student("Alice", "Smith", 22);
+    Student* student3 = new Student("Bob", "Johnson", 21);
+
+    
+    int grades1[] = { 10, 8, 12 };
+    student1->SetExamGrades(grades1, 3);
+
+    int grades2[] = { 9, 7, 11 };
+    student2->SetExamGrades(grades2, 3);
+
+    int grades3[] = { 8, 6, 10 };
+    student3->SetExamGrades(grades3, 3);
+
+    
+    Group group1;
+    group1.SetGroupName("CS101");
+    group1.SetSpecialization(COMPUTER_SCIENCE);
+    group1.SetCourseNumber(1);
+
+    Group group2;
+    group2.SetGroupName("EE102");
+    group2.SetSpecialization(ELECTRICAL_ENGINEERING);
+    group2.SetCourseNumber(1);
+
+    
+    group1.AddStudent(student1);
+    group1.AddStudent(student2);
+
+    group2.AddStudent(student3);
+
+    
+    std::cout << "Initial state of groups:\n";
+    group1.DisplayAllStudents();
+    group2.DisplayAllStudents();
+
+    
+    group1.MergeGroups(group2);
+
+    std::cout << "\nGroups after merging:\n";
+    group1.DisplayAllStudents();
+    group2.DisplayAllStudents();  // Group2 is now empty
+
+    
+    group1.TransferStudent(1, group2);
+
+    std::cout << "\nGroups after transferring a student:\n";
+    group1.DisplayAllStudents();
+    group2.DisplayAllStudents();
+
+    
+    group1.ExpelFailedStudents();
+
+    std::cout << "\nGroup1 after expelling failed students:\n";
+    group1.DisplayAllStudents();
+
+    
+    group1.ExpelWorstHomeworkStudent();
+
+    std::cout << "\nGroup1 after expelling the worst homework student:\n";
+    group1.DisplayAllStudents();
+
+    
+    delete student1;
+    delete student2;
+    delete student3;
+
+    return 0;
+}
