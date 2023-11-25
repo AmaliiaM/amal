@@ -109,9 +109,9 @@ class Student
 public:
     Student()
     {
-        SetName("Veronika");
-        SetSurname("Geyna");
-        SetBirthday({ 1,2,2005 });
+        SetName("Amaliia");
+        SetSurname("Manko");
+        SetBirthday({ 9,7,2005 });
         SetStudyStart({ 1,2,2022 });
     }
     void printStudent()
