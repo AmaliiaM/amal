@@ -1,0 +1,136 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+enum TextColor {
+    DefaultColor,
+    RedText,
+    PurpleText,
+    WhiteText,
+    BlueText,
+    BrownText,
+    GreyText,
+    BlackText
+};
+
+class Application {
+private:
+    static Application* instance;
+    string appTitle;
+
+    Application() {
+        appTitle = "Default Title";
+    }
+
+public:
+    static Application* GetInstance() {
+        if (instance == nullptr) {
+            instance = new Application();
+        }
+        return instance;
+    }
+
+    void SetAppTitle(const string& newTitle) {
+        appTitle = newTitle;
+    }
+
+    void StartRandomize() {
+        srand(time(0));
+        int randomNumber = rand() % 100 + 1;
+        cout << "Generated random number: " << randomNumber << endl;
+    }
+
+    void SetConsoleTextColor(const int color) {
+        switch (color) {
+        case DefaultColor:
+            cout << "\033[0m";
+            break;
+        case RedText:
+            cout << "\033[31m";
+            break;
+        case PurpleText:
+            cout << "\033[32m";
+            break;
+        case WhiteText:
+            cout << "\033[33m";
+            break;
+        case BlueText:
+            cout << "\033[34m";
+            break;
+        case BrownText:
+            cout << "\033[35m";
+            break;
+        case GreyText:
+            cout << "\033[36m";
+            break;
+        case BlackText:
+            cout << "\033[37m";
+            break;
+        default:
+            cout << "\033[0m";
+            break;
+        }
+    }
+
+    string GetAppTitle() const {
+        return appTitle;
+    }
+
+    void ClearConsoleScreen() {
+        system("cls");
+    }
+};
+
+Application* Application::instance = nullptr;
+
+int main() {
+    int choice, flag = 0;
+    Application* app = Application::GetInstance();
+
+    while (true) {
+        cout << "1 - Create application" << endl;
+        cout << "2 - Get application title" << endl;
+        cout << "3 - Set application title" << endl;
+        cout << "4 - Get random number" << endl;
+        cout << "5 - Set console text color" << endl;
+        cout << "6 - Clear console screen" << endl;
+        cout << "7 - Exit" << endl;
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            app->GetInstance();
+            break;
+        case 2:
+            cout << app->GetAppTitle() << endl;
+            break;
+        case 3:
+            cout << "Enter new application title: ";
+            cin.ignore(); // Clear input buffer
+            getline(cin, appTitle);
+            app->SetAppTitle(appTitle);
+            break;
+        case 4:
+            app->StartRandomize();
+            break;
+        case 5:
+            int colorChoice;
+            cout << "Enter color choice (1-7): ";
+            cin >> colorChoice;
+            app->SetConsoleTextColor(colorChoice);
+            break;
+        case 6:
+            app->ClearConsoleScreen();
+            break;
+        case 7:
+            flag = 1;
+            break;
+        }
+
+        if (flag == 1)
+            break;
+    }
+
+    return 0;
+}
