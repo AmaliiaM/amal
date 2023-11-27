@@ -11,7 +11,7 @@ struct DateTime {
 	string weekday = "Wednesday";
 };
 
-class Cat { //робимо котика
+class Cat { 
 public:
 
 	double tail_length = 0.5;
