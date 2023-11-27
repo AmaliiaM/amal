@@ -1073,6 +1073,4 @@ int main()
 	hat.sew();
 	hat.washing();
 	hat.printHat();
-
-
 }
