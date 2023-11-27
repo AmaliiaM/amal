@@ -105,9 +105,9 @@ public:
     }
 
     Student() {
-        SetName("Veronika");
-        SetSurname("Geyna");
-        SetBirthday({14, 07, 2005});
+        SetName("Amaliia");
+        SetSurname("Manko");
+        SetBirthday({9, 7, 2005});
         SetStudyStart({1, 9, 2022});
         ThrowError();
     }
