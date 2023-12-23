@@ -733,3 +733,125 @@ while (Ist. IsEmpty())
    }
 return 0;
 }
+
+
+
+
+
+
+
+
+{
+return real_count;
+}
+
+void PushBack(int value)
+{
+    if(!IsFull())
+       data[real_count++] = value;
+}
+
+void PushFront(int value)
+{
+  if(!IsFull())
+  {
+    for (int 1 = real_count; 1 > 0; 1--)
+        data[i] = data[i - 1];
+    data[0] = value;
+    real_count++;
+  }
+ }
+int PopBack()
+{
+   if (!IsEmpty())
+  {
+     int last = data[real_count - 1];
+    real_count--;
+    return last;
+  }
+  else
+  {
+    throw "Queue is empty!";
+  }
+int PopFront()
+{
+  if (!IsEmpty())
+  {
+
+
+
+
+   {
+    for (int i = real_count; i > o; i-)
+         data[i] = data[i - 1];
+    data[0] = value;
+    real_count++;
+   }
+ }
+
+int PopBack()
+{
+   if (!IsEmpty())
+   {
+      int last = data[real_count - 1];
+      real_count--;
+      return last;
+   }
+   else
+   {
+      throw "Queue is empty!";
+   }
+}
+
+int PopFront()
+{
+  if (!IsEmpty())
+  {
+      int first = data[0];
+      for(int i = 1; i < real_count; i++)
+          data[i - 1] = data[i];
+
+      real_count--;
+      return first;
+  }
+  else
+  {
+      throw "Queue is empty!";
+
+
+
+
+
+#include <vector>
+#include ‹string>
+using namespace std;
+
+class Passport {
+ private:
+     string firstName;
+     string lastName;
+     string passportNumber;
+
+public:
+  Passport (string firstName, string lastName, string passportNumber)
+     : firstName(firstName), lastName(lastName), passportNumber(passportNumber) {}
+
+void Print() const {
+     cout <<"Passport Information:" << endl;
+     cout << "First Name: " << firstName << endl;
+     cout << "Last Name: " << lastName << endl;
+     cout << "Passport Number: " << passportnumber << endl;
+  }
+}
+class ForeignPassport : public Passport {
+private:
+    vector<string> visas;
+public:
+      ForeignPassport(string firstName, string lastName, string passportNumber)
+         : Passport(firstName, lastName, passportNumber) {}
+
+      void Visa(const string& visa) {
+           visas. push_back(visa);
+      }
+      void Print() const {
+           Passport: :PrintO;
