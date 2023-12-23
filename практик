@@ -889,3 +889,183 @@ int main() {
     foreignPassport.Print();
 return 0;
 }
+
+
+using namespace std;
+
+class Passport {
+private:
+  stringfirstName;
+  stringLastName;
+  stringpassportNumber;
+
+public:
+{
+   Passport(string firstName, string lastName, string passportNumber) {
+      this->firstName= firstName;
+      this->lastName = lastName;
+      this->passportNumber = passportNumber;
+  }
+void Print() const
+{
+   cout << "Passport Information:" << endl;
+   cout << "First Name:" << firstName << endl;
+   cout << "Last Name: " << lastName << endl;
+   cout << "Passport Number: " << passportNumber « endl;
+ }
+}
+
+class ForeignPassport : public Passport {
+protected:
+    vector<string> visas;
+public:
+    ForeignPassport(string firstName, string lastName, string passportNumber)
+       : Passport(firstName, lastName, passportNumber) {}
+
+void Visa(const string& visa) {
+     visas.push_back(visa);
+  }
+void Print() const {
+    Passport: Print();
+    cout << "Visas:" << endl;
+    for (const auto& visa : visas) {
+    cout << visa << endl;
+    }
+  }
+}
+___
+
+
+
+
+class ForeignPassport : public Passport {
+protected:
+
+   static const int Max = 5;
+
+   string visaArr[Max];
+   int visa_count;
+
+public:
+   ForeignPassport(string firstName, string lastName, string passportNumber)
+     : Passport(firstName, lastName, passportNumber), visa_count(0) {}
+
+   void Visa(const string& visa) {
+     if (visa_count < Max) {
+       visaArr[visa_count++] = visa;
+       }
+       else 
+       {
+       cout << "Maximum number of visas reached." << endl;
+       }
+   }
+
+   void Print) const {
+     Passport: Print();
+     cout << "Visas:" << endl;
+     for (int i = 0; i < visa_count; ++i) {
+         cout << visaArr[i] << endl;
+     }
+   }
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class Animal
+{
+public:
+    virtual void Speak()
+    {
+        cout << "Sound\n";
+    }
+
+    virtual void Eat()
+    {
+        cout << "Food\n";
+    }
+};
+
+class Cat: public Animal
+{
+public:
+    void Speak()
+    {
+        cout << "Meow\n";
+    }
+
+    void Eat()
+    {
+        cout << "Meat\n";
+    }
+};
+
+class Dog: public Animal
+{
+public:
+    void Speak()
+    {
+        cout << "Woof\n";
+    }
+
+    void Eat()
+    {
+        cout << "Meat\n";
+    }
+};
+
+class Mouse: public Animal
+{
+public:
+    void Speak()
+    {
+        cout << "Squeak squeak\n";
+    }
+
+    void Eat()
+    {
+        cout << "Corn\n";
+    }
+};
+
+class Parrot: public Animal
+{
+public:
+    void Speak()
+    {
+        cout << "Chik chirp\n";
+    }
+
+    void Eat()
+    {
+        cout << "Grains\n";
+    }
+};
+
+int main()
+{
+    int count = 4;
+
+    Animal** feeding = new Animal * [count];
+
+    feeding[0] = new Cat;
+    feeding[1] = new Dog;
+    feeding[2] = new Mouse;
+    feeding[3] = new Parrot;
+
+    for (int i = 0; i < count; i++)
+    {
+        feeding[i]->Eat();
+        feeding[i]->Speak();
+        cout << "\n";
+    }
+
+    for (int i = 0; i < count; i++)
+    {
+        delete feeding[i];
+    }
+    delete[] feeding;
+
+}
