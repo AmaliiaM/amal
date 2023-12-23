@@ -855,3 +855,37 @@ public:
       }
       void Print() const {
            Passport: :PrintO;
+
+
+
+
+
+
+class ForeignPassport : public Passport {
+private:
+      vector<string> visas;
+public:
+    ForeignPassport(string firstName, string lastName, string passportNumber)
+        : Passport(firstName, lastName, passportNumber) [}
+
+    void Visa(const string& visa) {
+        visas.push_back(visa);
+    }
+    void Print() const {
+        Passport: : Print;
+        cout « "Visas:" << endl;
+        for (const auto& visa : visas) {
+             cout << "- " << visa « endl;
+     }
+ }
+}
+int main() {
+    Passport regularPassport("Amaliia", "Manko", "6785490241");
+    regularPassport.Print();
+
+    ForeignPassport foreignPassport ("Amaliia", "Manko", "1420945876");
+    foreignPassport. Visa("Europe");
+    foreignPassport.Visa("France");
+    foreignPassport. Print();
+return 0;
+}
