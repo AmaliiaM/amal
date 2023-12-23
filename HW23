@@ -1,0 +1,32 @@
+﻿#include <iostream>
+#include <set> 
+
+using namespace std;
+
+int main()
+{
+    srand(time(0));
+
+    set<int> set;
+
+    set.insert(10);
+    set.insert(34);
+    set.insert(100);
+    set.insert(344);
+    set.insert(867);
+        
+    cout << "Elements: ";
+    for (const auto& element : set) {
+        cout << element << " ";
+    }
+
+    cout << "\n";
+
+    set.erase(100);
+    set.erase(34);
+
+    cout << "After removal: ";
+    for (const auto& element : set) {
+        cout << element << " ";
+    }
+}
