@@ -258,3 +258,478 @@ public:
   Student original;
   Logger: :GetInstance()->Write("main ended\n");
  }
+
+
+
+
+1: Main started
+2: Student created
+3: Main ended
+4: Student destroyed
+C: \Users \USER \source \repos\practice25.10\×64\Debug \practice25.10. exe (process 31264) exited with code 0.
+To automatically close the console when debugging stops, enable Tools-Options-Debugging-Automatically close the consc
+le when debugging stops
+
+Press any key to close this window.…
+
+
+main started
+
+Student created
+main ended
+
+Student destroyed
+main started
+
+Student created
+main ended
+
+Student destroyed
+
+
+class Logger
+{
+  static Logger* instance; // 1)private static pointer to a single instance of the class
+  int log_count = 0; // how many times was the line written to the file
+  string path = "C:/test/test.txt";
+
+
+Student()
+{
+  Logger: :GetInstance()-›Write("Student created");
+  SetName("Amaliia");
+  SetSurname("Manko");
+  SetBirthday({09, 07,2005 });
+  SetStudyStart({ 01,09,2022 });
+throwError();
+}
+
+
+
+Student (const Student& original)
+{
+   this->name = original.name;
+   this-surname = original.surname;
+   this->birthday = original.birthday;
+   this-›study_start = original.study_start;
+   this->hometask_rates_count = original.hometask_rates_count;
+   this->hometask_rates = new int[this->hometask_rates_count];
+   for (int i = 0; i < this->hometask_rates_count; i++)
+  {
+      this->hometask_rates[i] = original.hometask_rates[i];
+  }
+  throwError;
+  Logger: :GetInstance)->Write("Student created");
+}
+~Student()
+{
+  if (hometask_rates != nullptr)
+  { 
+    delete[] hometask_rates;
+    hometask_rates = nullptr;
+  }
+  Logger: :GetInstance()->Writel"Student destroyed");
+}
+
+
+
+
+Fraction operator + (const Fraction& left, const Fraction& right)
+{
+   Fraction result;
+   result.SetNumerator(left.GetNumerator() * right.GetDenominator() + right.GetNumerator() * left.GetDenominator());
+   result.SetDenominator(left.GetDenominator() * right.GetDenominator());
+   return result;
+}
+
+Fraction operator - (const Fraction& left, const Fraction& right)
+{
+   Fraction result;
+   result.SetNumerator(left.GetNumerator() * right.GetDenominator() - right.GetNumerator() * left.GetDenominator());
+   result.SetDenominator(left.GetDenominator() * right.GetDenominator());
+   return result;
+}
+
+Fraction operator * (const Fraction& left, const Fraction& right)
+{
+   Fraction result;
+   result.SetNumerator(left.GetNumerator() * right. GetNumerator());
+   result.SetDenominator(left.GetDenominator() * right.GetDenominator());
+   return result;
+}
+
+Fraction operator / (const Fraction& left, const Fraction& right)
+{
+  if (right.GetNumerator() == 0) {
+      throw "ERROR: Division by zero.";
+   }
+  Fraction result;
+  result.SetNumerator(left.GetNumerator() * right.GetDenominator());
+  result.SetDenominator(left.GetDenominator() * right.GetNumerator());
+  return result;
+}
+
+
+
+bool operator < (const Fraction& left, const Fraction& right)
+{
+    return left.GetDecimal() < right.GetDecimal();
+}
+
+bool operator == (const Fraction& left, const Fraction& right)
+{
+    return left.GetDecimal() == right.GetDecimal();
+}
+
+bool operator != (const Fraction& left, const Fraction& right)
+{
+    return left.GetDecimal() != right.GetDecimal();
+}
+
+
+Fraction operator - (const Fraction& r)
+{
+  cout << "CLASS METHOD\n";
+  Fraction result;
+  result.numerator = numerator * r.denominator - r.numerator * denominator;
+  result.denominator = denominator * r.denominator;
+  return result;
+}
+
+Fraction operator * (const Fraction& r)
+{
+  cout << "CLASS METHOD\n";
+  Fraction result;
+  result.numerator = numerator * r.numerator;
+  result.denominator = denominator * r.denominator;
+  return result;
+}
+
+Fraction operator / (const Fraction& r)
+{
+  cout << "CLASS METHOD\n";
+  Fraction result;
+  result.numerator = numerator * r.denominator;
+  result.denominator = denominator * r.numerator;
+  return result;
+}
+
+
+
+}
+
+DateTime(const DateTime& original)
+{
+    //cout << "DateTime copy constructor\n";
+    this->day = original.day;
+    this->month = original.month;
+    this->year = original.year;
+}
+
+~DateTime(){
+    //cout << "DateTime destructor\n";
+}
+
+void Print() const
+{
+   cout << "Date: " << day << "." << month << "." << year << endl;
+ }
+
+operator string() {
+   return to_string(day) + "." + to_string(month) + "." + to_string(year);
+ }
+}
+
+int main()
+{
+setlocale(0, "");
+
+DateTime today (23, 12, 2023);
+string textData = today;
+cout << textData << "\n"; // 23.12.2023
+
+
+
+
+
+
+int main()
+{
+    string name = "Amaliia";
+    Student s = name; 
+    s. PrintStudent;
+
+
+
+int& operator [] (unsigned int index) {
+    if (index == 0)return day;
+    if (index == 1)return month;
+    if (index == 2)return year;
+    throw"Incorrect index \n";
+}
+
+Student (string value) {
+   name = value;
+} 
+
+
+
+
+int main()
+{
+   DateTime today(23, 12, 2023);
+   cout << today[0]; // 23
+   cout << today[1]; // 12
+   cout << today[2]; // 2023
+   /*cout << today[3]; //Error
+   cout << today[-1]; // Error*/
+
+   today[0] = 24; // write access
+   today.PrintO; // 24.12.2023
+
+
+
+Student& operator=(const Student& original)
+{
+ if (this == original)
+    return *this;
+name = original.name;
+surname = original.surname;
+birthday = original.birthday;
+study_start = original.study_start;
+
+if (hometask_rates != nullptr)
+   delete[] hometask_rates;
+if (exam_rates != nullptr)
+   delete[]exam_rates;
+if (practice_rates != nullptr)
+   delete[] practice_rates;
+
+hometask_rates_count = original.hometask_rates_count;
+exam_rates_count = original.exam_rates_count;
+practice_rates_count = original.practice_rates_count;
+
+if (hometask_rates_count > 0)
+{
+  hometask_rates = new int [hometask_rates_count];
+  for (int i = 0; i < hometask_rates_count; i++)
+      hometask_rates[i] = original.hometask_rates[i];
+}
+if (exam_rates_count > 0)
+{
+    exam_rates = new int[exam_rates_count];
+    for (int i = 0; i < exam_rates_count; i++)
+        exam_rates[i] = original.exam_rates[i];
+}
+if (practice_rates_count > 0)
+{
+    practice_rates = new int[practice_rates_count];
+    for (int 1 = 0; 1 < practice_rates_count; i++)
+         practice_rates[il = original.practice_rates[il;
+}
+return *this;
+}
+
+
+
+
+
+Group& operator=(const Group& original)
+{
+  if (this == original)
+  {
+    return *this;
+  }
+ 
+  if (group != nullptr)
+      delete[] group;
+
+  groupSize = original.groupSize;
+  courseN = original.courseN;
+  groupName = original.groupName;
+  specialty = original.specialty;
+
+  group = new Student [groupSize];
+  for (int i = 0; i < this-›groupSize; i++)
+       groupli] = original.group[i];
+
+return *this;
+}
+
+
+{
+   // cout « "DESTRUCTOR! \n" ;
+  if (data != nullptr)
+  {
+     delete [] data;
+     data = nullptr;
+  }
+}
+int IndexOf(int value) const
+{
+   for (int i = 0; 1 < size; i++)
+   {
+      if (data[i] == value)
+      {
+         return i;
+      }
+  }
+  return -1;
+}
+
+void Reverse()
+{
+   int start = 0;
+   int end = size - 1;
+
+   while (start < end)
+  {
+     int temp = datalstart;
+     data[start] = data[end];
+     data[end] = temp;
+
+     start++;
+     end--;
+   }
+ }
+void SortAscO
+
+
+
+void SortAsc()
+ {
+   if (size <= 1)
+   {
+    return;
+   }
+  for (int i = 0; 1 < size - 1; i++)
+  {  
+    for (int j = i + 1; j < size; j++)
+     {
+      if (data[j] < data[il)
+       {
+        data[i] = datal[i] + data[j];
+        data[i] = datal[i] - data[j];
+        data[i] = datal[i] - data[j];
+      }
+     }
+    }
+  }
+}
+private:
+   void EnsureCapacity()
+   {
+     if (size < capacity)
+    {
+     return;
+    }
+capacity *= 2;
+
+
+
+
+   int Pop()
+   {
+     if(!IsEmpty())
+      {
+          return ar[--index];
+      }
+      else
+      {
+        throw "Stack is empty!";
+      }
+   } 
+   int Peek() const
+   {
+    if(!IsEmpty())
+    {
+      return ar[index - 11];
+    }
+    else
+    {
+      throw "Error";
+    }
+   }
+  }
+  int main()
+  {
+   Stack st; // create an "empty" stack
+   // until the stack is full
+   while (!st.IsFull())
+      st.Push(rand() % 90 + 10); // add an element to the top of the stack
+   //as long as there are any values ​​on the stack
+   while (!st.IsEmpty())
+      cout << st.Pop() << " "; // extract value and show on screen
+
+
+
+int Peek() const
+{
+   if (!IsEmpty())
+    {
+      return ar[intex - 11;
+    }
+    else
+    {
+       throw "Error";
+    }
+ }
+bool Contains(int value) const
+{
+  for (int i = 0; 1 < index; ++i)
+  {
+    if (ar[i] == value)
+     {
+       return true;
+     }
+  }
+    return false;
+}
+int main()
+{
+   Stack st; // создаём "пустой" стек
+
+   //И до тех пор, пока стек не заполнился
+   while (Ist.IsFullO)
+   st.Push (rand() % 90 + 10); // добавляем элемент на ве
+
+
+
+    cout << st.Pop << " "; // извлечь значение и показать на экране
+
+    if (st.Contains(5) == true) {
+     cout « "True\n" ;
+    }
+
+    stack<int> st2; // створюємо стек для зберігання елементів типу int
+
+    cout «< "додати 5 елементів ";
+    for (int i = 0; 1 < 5; i++)
+    {
+     int value = rand % 10;
+     st.Push(value);
+     cout << value << " ";
+    }
+
+    cout « "видалити 2 елементи ";
+    for (int i = 0; 1 < 2; i++)
+    {
+     if (Ist.IsEmpty())
+     {
+       cout « st2.top «
+       st.Pop();
+    }
+    else
+    {
+      cout « "empty";
+    }
+  }
+
+cout « "показати всі елементи";
+while (Ist. IsEmpty())
+   {
+      cout << st2.top() << " ";
+      st.Pop();
+   }
+return 0;
+}
