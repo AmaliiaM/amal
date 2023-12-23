@@ -118,3 +118,43 @@ public:
      /// </ summary>
      /// <param name="month"></param>
 void SetMonth(int month)
+
+
+  /// <param name="month"></param>
+  void SetMonth(int month)
+  {
+    if (month >= 1 && month <= 12)
+    {
+      this->month = month;
+    }
+    else
+    {
+      cout « "Invalid value!" « endl;
+      throw "ERROR! \n";
+     }
+   }
+
+     /// <summary>
+     /// method to get the month of birth
+     /// </summary>
+     /// <returns>month</returns>
+     int GetMonth() const
+     {
+       return month;
+     }
+     ///‹summary>
+     ///method to set year of birth
+     /// </summary>
+     /// <param name="year"></param>
+     void SetYear(int year)
+    {
+       this->year = year;
+    }
+     ///‹summary>
+     /// method to get the year of birth
+     /// </summary>
+     ///<returns>year</returns>
+    int GetYear) const
+    {
+      return year;
+    _}
