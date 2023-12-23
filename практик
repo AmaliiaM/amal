@@ -884,8 +884,8 @@ int main() {
     regularPassport.Print();
 
     ForeignPassport foreignPassport ("Amaliia", "Manko", "1420945876");
-    foreignPassport. Visa("Europe");
+    foreignPassport.Visa("Europe");
     foreignPassport.Visa("France");
-    foreignPassport. Print();
+    foreignPassport.Print();
 return 0;
 }
