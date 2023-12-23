@@ -157,4 +157,95 @@ void SetMonth(int month)
     int GetYear) const
     {
       return year;
-    _}
+    }
+
+
+  public:
+    Student(): Student("Sam", "Dep", { 11, 9, 2001 }, { 4, 9, 2021 }){}
+
+    Student(string name, string surname): Student("Sam", "Dep", { 11, 9, 2001 }, { 4, 9, 2021 }){}
+
+    Student(string name, string surname, DateTime birthday, DateTime study_start)
+    {
+      SetName (name);
+      SetSurname(surname);
+      SetBirthday(birthday);
+      SetStudyStart(study_start);
+    }=
+
+
+
+   // in which a SEPARATE NEW AREA OF MEMORY will be selected under all index fields
+  Student(const Student& original)
+   {
+     cout << "student copy constructor \n";
+
+     this->name = original.name;
+     this->surname = original.surname;
+     this->birthday = original.birthday;
+     this-study_start = original.study_start;
+
+   //an example of DEEP COPY
+     this->hometask_rates_count = original.hometask_rates_count;
+     this->practice_rates_count = original.practice_rates_count;
+     this->exam_rates_count = original.exam_rates_count;
+
+   //for pointer fields there will be a separate code that allocates new memory!!!!
+     this->hometask_rates = new int[this->hometask_rates_count];
+   // it is enough to allocate memory, and it is also necessary to initialize it!!!
+     for (int i = 0; i < this->hometask_rates_count; i++)
+     {
+      this->hometask_rateslil = original.hometask_rates[il;
+     }
+   //for pointer fields there will be a separate code that allocates new memory!!!!
+     this->practice_rates = new int[this->hometask_rates_count];
+   // it is enough to allocate memory, and it is also necessary to initialize it!!!
+     for (int i = 0; i < this-›practice_rates_count; i++)
+     {
+       this-›practice_rates[i] = original.practice_rates[i];
+     }
+   // for pointer fields there will be a separate code that allocates new memory!!!!
+   this->exam_rates = new int[this->hometask_rates_count];
+   // it is enough to allocate memory, and more is needed
+  for (int i = 0; i < this->examrates_count; i++)
+  {
+   this->exam_ratesli] = original. exam_rates|il;
+}
+}
+
+
+
+
+
+class Application {
+
+private:
+  static Application* instance;
+  string title;
+
+  Application()
+  {
+   title = "Title";
+  }
+
+public:
+  static Application* GetInstance()
+  {
+   return instance;
+  }
+
+  void SetTitle(const string& title2)
+  {
+   title = title2;
+  }
+  void Random()
+  {
+   srand(time (NULL));
+   int n = rand() % 100 + 1;
+   cout << "Number:" << n << endl;
+  }
+  string GetTitle() const
+  {
+   return title;
+  }
+ }
