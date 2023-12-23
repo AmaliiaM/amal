@@ -18,34 +18,35 @@ int hunger;// 0 - full; 100 - hungry;
 int* salaries_list;
 
 public:
-Human;
+
+Human();
 Human (double height, string eyes_color);
 void SetHeight(double height);
-double GetHeight) const;
+double GetHeight() const;
 
 void SetEyes_color(string eyes_color);
-string GetEyes_color const;
+string GetEyes_color() const;
 
 void SetName(string name);
-string GetName const;
+string GetName() const;
 
 void SetLastName(string last_name);
-string GetLastName const;
+string GetLastName() const;
 
 void SetEnergy(int energy);
-int GetEnergy const;
+int GetEnergy() const;
 
 void SetSoreThroat (bool soreThroat);
-bool GetSoreThroat) const;
+bool GetSoreThroat() const;
 
 void SetCleanliness(int cleanliness);
-int GetCleanliness) const;
+int GetCleanliness() const;
 
 void SetMood(int mood);
-int GetMood const;
+int GetMood() const;
 
 void SetHunger (int hunger);
-int SetHunger) const;
+int SetHunger() const;
 
 void AddSalary(int);
-int* GetSalary;
+int* GetSalary()_;
