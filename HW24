@@ -1,0 +1,118 @@
+﻿#include <iostream>
+using namespace std;
+
+class Device
+{
+public:
+
+	string name;
+  string model;
+  string manufacturers_name;
+	int capacity;
+	int count;
+
+	virtual void Printdata()
+	{
+		cout << "Print info: \n";
+	}
+
+	virtual void Loaddata()
+	{
+		cout << "Device has been loaded\n";
+	}
+
+	virtual void Savedata()
+	{
+		cout << "Data has been saved\n";
+	}
+
+};
+
+class Flashdrive: public Device
+{
+public:
+
+	void Printdata()
+	{
+		cout << "Device: Flash Drive, Manuf. name: SanDisk, Model: 123, Name: Cruzer, Capacity: 256 GB, Count: 1;\n";
+	}
+
+	void Loaddata()
+	{
+		cout << "Flash drive has been loaded\n";
+	}
+
+	void Savedata()
+	{
+		cout << "Data ont the flash drive has been saved\n";
+	}
+
+};
+
+class Harddrive : public Device
+{
+public:
+
+	void Printdata()
+	{
+		cout << "Device: Hard Drive, Manuf. \nName: Seagate,\nModel: Backup Plus,\nName: External Hard Drive,\nCapacity: 2000,\nCount: 1;\n";
+	}
+
+	void Loaddata()
+	{
+		cout << "Hard Drive has been loaded\n";
+	}
+
+	void Savedata()
+	{
+		cout << "Data ont the hard drive has been saved\n";
+	}
+
+};
+
+class Telephone : public Device
+{
+public:
+
+	void Printdata()
+	{
+		cout << "Device: Telephone, Manuf. name: Apple, Model: iPhone 15, Name:iPhone, Campasity: 256 GB, Count: 1;\n";
+	}
+
+	void Loaddata()
+	{
+		cout << "Telephone has been loaded\n";
+	}
+
+	void Savedata()
+	{
+		cout << "Data ont the telephone has been saved\n";
+	}
+
+};
+
+int main()
+{
+	int count = 3;
+
+	Device** device = new Device * [count];
+
+	device[0] = new Flashdrive;
+	device[1] = new Harddrive;
+	device[2] = new Telephone;
+
+	for (int i = 0; i < count; i++)
+	{
+		device[i]->Printdata();
+		device[i]->Loaddata();
+		device[i]->Savedata();
+		cout << "----------------\n";
+	}
+
+	for (int i = 0; i < count; i++)
+	{
+		delete device[i];
+	}
+	delete[] device;
+
+}
