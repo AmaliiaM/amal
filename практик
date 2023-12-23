@@ -50,3 +50,71 @@ int SetHunger() const;
 
 void AddSalary(int);
 int* GetSalary()_;
+
+
+Human: : Human()
+{
+SetHeight(187);
+SetEyes_color ("blue");
+SetName("Sem");
+SetLastName("Dep");
+SetEnergy (10);
+SetSoreThroat(0);
+SetCleanliness (10);
+SetMood (10) ;
+SetHunger (10);
+salaries_list = new int[12];
+}
+
+
+
+Human: : Human()
+{
+  cout <<"Object has been destroyed!\n";
+  delete[] salaries_list;
+}
+void Human: : AddSalary(int salaries_list)
+{
+  // add 1 element to dynamic 1D-array
+}
+// think about state-safety
+int* Human: :GetSalary()
+{
+return salaries_list;
+}
+
+
+
+
+public:
+   /// <summary>
+   /// method to set day of birth
+   /// </ summary>
+   /// <param name="day"></param>
+
+   void
+   SetDay(int day)
+   {
+     if (day > 0 && day <= 31) // TO DO: february 28-29, april june 30
+    {
+      this->day = day;
+    }
+    else
+    {
+     cout « "Invalid value!" « endl;
+     throw "ERROR! \n" ;
+    }
+   }
+    /// <summary>
+    /// method to get the day of birth
+    /// </summary>
+    ///<returns>day</returns>
+    int GetDay() const
+   {
+      return day;
+   }
+     ///<summary>
+     /// method to set month of birth
+     /// </ summary>
+     /// <param name="month"></param>
+void SetMonth(int month)
