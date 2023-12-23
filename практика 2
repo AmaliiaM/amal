@@ -1,0 +1,87 @@
+//#include <iostream>
+//using namespace std;
+
+//class Student // перший тип
+//{
+//public:
+	//string message; // думка студента стосовно чогось
+	//string name;
+//public:
+//	void SaySomething()
+//	{
+		// cout << "Hello!\n";
+//		cout << message << "\n";
+//	}
+//};
+
+//class Teacher // другий тип
+//{
+//public:
+//	string name;
+//	int health;
+//public:
+//	void HearSomething(Student& who)
+//	{
+//		cout << "I hear some things:\n";
+		// cout << who.message << "\n";
+//		who.SaySomething();
+		// health--;
+//	}
+//};
+
+//int main()
+//{
+	// тип_об'экту iм'я;
+//	int x;
+//	double d;
+
+	// приклад створення об'эктiв
+//	Student s; // перший об'экт
+//	s.name = "Mykola"; // налаштування реалiзацii
+//	s.message = "Perevirte budlaska moe domashne zavdannya";
+
+//	Teacher t; // другий об'экт iншого типу
+//	t.name = "Oleksandr";
+
+	// передача повiдомлення
+//	t.HearSomething(s); 
+	// перший_об'экт.метод(другий_об'экт);
+
+//}  
+#include <iostream>
+
+// Функция, принимающая параметр по значению (создается копия)
+void passByValue(int x) {
+    x = x * 2;
+    std::cout << "Inside passByValue: " << x << std::endl;
+}
+
+// Функция, принимающая параметр по указателю
+void passByPointer(int* ptr) {
+    *ptr = *ptr * 2;
+    std::cout << "Inside passByPointer: " << *ptr << std::endl;
+}
+
+// Функция, принимающая параметр по ссылке
+void passByReference(int& ref) {
+    ref = ref * 2;
+    std::cout << "Inside passByReference: " << ref << std::endl;
+}
+
+int main() {
+    int value = 5;
+    int* ptr = &value;
+
+    std::cout << "Original value: " << value << std::endl;
+
+    passByValue(value);
+    std::cout << "After passByValue: " << value << std::endl;
+
+    passByPointer(ptr);
+    std::cout << "After passByPointer: " << value << std::endl;
+
+    passByReference(value);
+    std::cout << "After passByReference: " << value << std::endl;
+
+    return 0;
+}
