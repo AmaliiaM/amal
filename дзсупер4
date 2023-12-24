@@ -1,0 +1,189 @@
+#include <iostream>
+using namespace std;
+
+class Gender
+{
+public:
+    virtual void PrintGender() const = 0;
+};
+
+class Male : public Gender
+{
+public:
+    void PrintGender() const
+    {
+        cout << "Male\n";
+    }
+};
+
+class Female : public Gender
+{
+public:
+    void PrintGender() const
+    {
+        cout << "Female\n";
+    }
+};
+
+class Power
+{
+public:
+    virtual void UsePower() const = 0;
+};
+
+class FirePower : public Power
+{
+public:
+    void UsePower() const
+    {
+        cout << "Fire Power\n";
+    }
+};
+
+class IcePower : public Power
+{
+public:
+    void UsePower() const
+    {
+        cout << "Ice Power\n";
+    }
+};
+
+class StretchPower : public Power
+{
+public:
+    void UsePower() const
+    {
+        cout << "Stretch Power\n";
+    }
+};
+
+class InvisibilityPower : public Power
+{
+public:
+    void UsePower() const
+    {
+        cout << "Invisibility Power\n";
+    }
+};
+
+class Superhero : public Gender
+{
+public:
+    virtual void PrintName() const = 0;
+    virtual void UsePower() const = 0;
+    virtual void PrintCharacter() const = 0;
+};
+
+class MrIncredible : public Superhero, public StretchPower, public Male
+{
+public:
+    void PrintName() const
+    {
+        cout << "Mr. Incredible\n";
+    }
+
+    void UsePower() const
+    {
+        StretchPower::UsePower();
+    }
+
+    void PrintCharacter() const
+    {
+        cout << "Determined and strong\n";
+    }
+};
+
+class Elastigirl : public Superhero, public StretchPower, public Female
+{
+public:
+    void PrintName() const
+    {
+        cout << "Elastigirl\n";
+    }
+
+    void UsePower() const
+    {
+        StretchPower::UsePower();
+    }
+
+    void PrintCharacter() const
+    {
+        cout << "Nurturing and resilient\n";
+    }
+};
+
+class Frozone : public Superhero, public IcePower, public Male
+{
+public:
+    void PrintName() const
+    {
+        cout << "Frozone\n";
+    }
+
+    void UsePower() const
+    {
+        IcePower::UsePower();
+    }
+
+    void PrintCharacter() const
+    {
+        cout << "Cool-headed and loyal\n";
+    }
+};
+
+class Violet : public Superhero, public InvisibilityPower, public Female
+{
+public:
+    void PrintName() const
+    {
+        cout << "Violet\n";
+    }
+
+    void UsePower() const
+    {
+        InvisibilityPower::UsePower();
+    }
+
+    void PrintCharacter() const
+    {
+        cout << "Introverted and resourceful\n";
+    }
+};
+
+int main()
+{
+    setlocale(LC_ALL, "");
+
+    MrIncredible mrIncredible;
+    mrIncredible.PrintName();
+    mrIncredible.PrintGender();
+    mrIncredible.UsePower();
+    mrIncredible.PrintCharacter();
+
+    cout << "\n";
+
+    Elastigirl elastigirl;
+    elastigirl.PrintName();
+    elastigirl.PrintGender();
+    elastigirl.UsePower();
+    elastigirl.PrintCharacter();
+
+    cout << "\n";
+
+    Frozone frozone;
+    frozone.PrintName();
+    frozone.PrintGender();
+    frozone.UsePower();
+    frozone.PrintCharacter();
+
+    cout << "\n";
+
+    Violet violet;
+    violet.PrintName();
+    violet.PrintGender();
+    violet.UsePower();
+    violet.PrintCharacter();
+
+    return 0;
+}
