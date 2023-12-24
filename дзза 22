@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+
+class Student {
+private:
+    std::string name;
+    int age;
+
+public:
+    Student(const std::string& n, int a) : name(n), age(a) {}
+
+    // Додайте інші методи та конструктори за необхідності.
+
+    // Перевантажений оператор виводу для зручності тестування
+    friend std::ostream& operator<<(std::ostream& os, const Student& student);
+};
+
+std::ostream& operator<<(std::ostream& os, const Student& student) {
+    os << "Name: " << student.name << ", Age: " << student.age;
+    return os;
+}
+
+class Group {
+private:
+    Student* students;
+    int size;
+
+public:
+    Group(int s) : size(s) {
+        students = new Student[size];
+    }
+
+    // Конструктор копіювання
+    Group(const Group& other) : size(other.size) {
+        students = new Student[size];
+        for (int i = 0; i < size; ++i) {
+            students[i] = other.students[i];
+        }
+    }
+
+    // Перевантажений оператор присвоювання
+    Group& operator=(const Group& other) {
+        if (this == &other) {
+            return *this;
+        }
+
+        delete[] students;
+
+        size = other.size;
+        students = new Student[size];
+        for (int i = 0; i < size; ++i) {
+            students[i] = other.students[i];
+        }
+
+        return *this;
+    }
+
+    // Деструктор
+    ~Group() {
+        delete[] students;
+    }
+
+    // Додайте інші методи та конструктори за необхідності.
+};
+
+int main() {
+    Group group1(3);
+    // Додайте студентів до group1
+
+    Group group2 = group1; // Виклик конструктора копіювання
+    Group group3(2);
+    group3 = group1; // Виклик оператора присвоювання
+
+    // group1, group2, group3 мають різні об'єкти, але дані копіюються правильно
+
+    return 0;
+}
