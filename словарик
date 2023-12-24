@@ -1,0 +1,58 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<string> LoadDictionary(const string& filename) {
+    vector<string> dictionary;
+    ifstream inputFile(filename);
+
+    if (!inputFile.is_open()) {
+        cerr << "Unable to open the dictionary file." << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    string word;
+    while (inputFile >> word) {
+        dictionary.push_back(word);
+    }
+
+    inputFile.close();
+    return dictionary;
+}
+
+vector<string> FindFunnyWords(const vector<string>& dictionary) {
+    vector<string> funnyWords;
+
+    for (const string& word1 : dictionary) {
+        string suffix = word1.substr(word1.length() - 3);
+
+        for (const string& word2 : dictionary) {
+            if (word2.substr(0, 3) == suffix && word1 != word2) {
+                funnyWords.push_back(word1 + word2.substr(3));
+            }
+        }
+    }
+
+    return funnyWords;
+}
+
+int main() {
+    string dictionaryFile = "english_dictionary.txt"; // Встановіть ім'я файлу словника
+
+    vector<string> dictionary = LoadDictionary(dictionaryFile);
+    vector<string> funnyWords = FindFunnyWords(dictionary);
+
+    if (funnyWords.empty()) {
+        cout << "No funny words found." << endl;
+    } else {
+        cout << "Funny words:" << endl;
+        for (const string& funnyWord : funnyWords) {
+            cout << funnyWord << endl;
+        }
+    }
+
+    return 0;
+}
